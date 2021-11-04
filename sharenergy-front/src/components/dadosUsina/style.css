@@ -1,0 +1,11 @@
+.main-dados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #fff;
+
+  gap: 2em;
+
+  padding: 1vw;
+}
