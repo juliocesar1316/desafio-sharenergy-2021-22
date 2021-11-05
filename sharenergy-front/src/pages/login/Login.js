@@ -1,23 +1,13 @@
-import Header from "../../components/header";
-import Menu from "../../components/menu/menu";
-import './style.css'
-import '../../App.css'
+import "./style.css";
+import "../../App.css";
+import LoginApp from "../../components/login";
 
-function Login(){
-    return(
-        <div>
-            <div className="header">
-                <Header/>
-            </div>            
-            <div className="content">
-                <Menu/>
-                <div className="section">
-                    conteudo
-                </div>
-            </div>       
-      </div>
-    
-    )
-};
+function Login() {
+  return (
+    <div>
+      <LoginApp />
+    </div>
+  );
+}
 
-export default Login
+export default Login;

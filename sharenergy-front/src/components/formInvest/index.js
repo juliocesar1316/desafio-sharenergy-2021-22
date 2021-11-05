@@ -20,7 +20,7 @@ export default function FormInvest() {
     };
 
     try {
-      await fetch("http://localhost:3333/investimento", {
+      await fetch("https://api-sharenergy.herokuapp.com/investimento", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

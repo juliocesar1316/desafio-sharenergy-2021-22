@@ -31,7 +31,7 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 const useStyles = makeStyles({
   table: {
-    width: "50em",
+    width: "65em",
     marginTop: "4em",
   },
   body: {
@@ -52,6 +52,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100%",
+    zIndex: "1",
   },
   close: {
     position: "absolute",
@@ -76,9 +77,12 @@ function Investimento() {
   }, []);
 
   async function dadosUsina() {
-    const response = await fetch("http://localhost:3333/graficoUsina", {
-      method: "GET",
-    });
+    const response = await fetch(
+      "https://api-sharenergy.herokuapp.com/graficoUsina",
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     setDadosGrafico(data);
     setFirstTime(data[0].tempo_h);
@@ -87,9 +91,12 @@ function Investimento() {
 
   async function listaInvestimentos() {
     try {
-      const response = await fetch("http://localhost:3333/investimento", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://api-sharenergy.herokuapp.com/investimento",
+        {
+          method: "GET",
+        }
+      );
       const data = await response.json();
       setListaInvestimento(data);
     } catch (error) {
@@ -98,7 +105,7 @@ function Investimento() {
   }
 
   async function handleDelete(id) {
-    await fetch(`http://localhost:3333/investimento/${id}`, {
+    await fetch(`https://api-sharenergy.herokuapp.com/investimento/${id}`, {
       method: "DELETE",
     });
     listaInvestimentos();
@@ -140,8 +147,11 @@ function Investimento() {
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
+              <StyledTableCell align="left">ID</StyledTableCell>
               <StyledTableCell align="left">Nome do cliente</StyledTableCell>
+              <StyledTableCell align="left">Cliente ID</StyledTableCell>
               <StyledTableCell align="left">Nome da Usina</StyledTableCell>
+              <StyledTableCell align="left">Usina ID</StyledTableCell>
               <StyledTableCell align="left">Percentual Receita</StyledTableCell>
               <StyledTableCell align="left">Valor da Receita</StyledTableCell>
               <StyledTableCell align="left"></StyledTableCell>
@@ -151,10 +161,15 @@ function Investimento() {
           <TableBody className={classes.body}>
             {listaInvestimento.map((x) => (
               <StyledTableRow key={x.id}>
+                <StyledTableCell align="left">{x.id}</StyledTableCell>
                 <StyledTableCell component="th" scope="row">
                   {x.nomecliente}
                 </StyledTableCell>
+                <StyledTableCell align="left">
+                  {x.numerocliente}
+                </StyledTableCell>
                 <StyledTableCell align="left">{x.nomeusina}</StyledTableCell>
+                <StyledTableCell align="left">{x.usinaid}</StyledTableCell>
                 <StyledTableCell align="center">
                   {`${x.percentualdeparticipacao}%`}
                 </StyledTableCell>

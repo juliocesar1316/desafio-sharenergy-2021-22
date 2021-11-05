@@ -19,13 +19,16 @@ export default function EditInvest({ dados, modalEdit }) {
       percentualdeparticipacao: percentualDeParticipacao,
     };
 
-    await fetch(`http://localhost:3333/investimento/${dados.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    await fetch(
+      `https://api-sharenergy.herokuapp.com/investimento/${dados.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
   }
 
   useEffect(() => {
@@ -43,23 +46,25 @@ export default function EditInvest({ dados, modalEdit }) {
         <div>
           <TextField
             className={classes.text}
-            required
-            id="outlined-required"
+            id="outlined-read-only-input"
             label="Nome Usina"
             variant="outlined"
+            InputProps={{
+              readOnly: true,
+            }}
             fullWidth
-            onChange={(e) => setNumeroCliente(e.target.value)}
             value={numeroCliente}
           />
           <TextField
             className={classes.text}
-            required
-            id="outlined-required"
+            id="outlined-read-only-input"
             type="text"
             label="Endereco"
             variant="outlined"
+            InputProps={{
+              readOnly: true,
+            }}
             fullWidth
-            onChange={(e) => setUsinaId(e.target.value)}
             value={usinaId}
           />
         </div>

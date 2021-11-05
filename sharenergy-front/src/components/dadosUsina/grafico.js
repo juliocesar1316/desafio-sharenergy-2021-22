@@ -18,9 +18,12 @@ function Grafico() {
 
   useEffect(() => {
     async function dadosUsina() {
-      const response = await fetch("http://localhost:3333/graficoUsina", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://api-sharenergy.herokuapp.com/graficoUsina",
+        {
+          method: "GET",
+        }
+      );
 
       const data = await response.json();
       setDadosUsina(data);
