@@ -54,7 +54,7 @@ export default function LoginApp() {
     const userValue = event.target[0].value;
     const senhaValue = event.target[2].value;
     const result = await logar(userValue, senhaValue);
-    result ? history.push(`/`) : history.push(`/login`);
+    result ? history.push(`/dashboard`) : history.push(`/`);
   };
 
   return (

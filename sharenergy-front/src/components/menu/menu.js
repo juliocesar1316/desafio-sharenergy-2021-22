@@ -12,7 +12,7 @@ function Menu() {
   return (
     <div className="nav-menu">
       <div className="menu">
-        <ListItem button component={NavLink} to="/">
+        <ListItem button component={NavLink} to="/dashboard">
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>

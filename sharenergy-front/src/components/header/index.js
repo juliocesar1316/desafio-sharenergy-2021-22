@@ -7,7 +7,7 @@ function Header() {
       <h1>SHARENERGY</h1>
       <div className="user">
         <p>Bem Vindo</p>
-        <Link to="/login" className="btn-out">
+        <Link to="/" className="btn-out">
           Sair
         </Link>
       </div>

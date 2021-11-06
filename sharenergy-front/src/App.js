@@ -17,7 +17,7 @@ import { AuthProvider } from "./context/AuthContext/AuthContext";
 function PaginasProtegidas(props) {
   const { token } = useAuth();
   return (
-    <Route render={() => (token ? props.children : <Redirect to="/login" />)} />
+    <Route render={() => (token ? props.children : <Redirect to="/" />)} />
   );
 }
 
@@ -27,9 +27,9 @@ function App() {
       <AuthProvider>
         <Router>
           <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/" exact component={Login} />
             <PaginasProtegidas>
-              <Route path="/" exact component={Dashboard} />
+              <Route path="/dashboard" component={Dashboard} />
               <Route path="/cadastroCliente" component={CadastroCliente} />
               <Route path="/cadastroUsina" component={CadastroUsina} />
               <Route path="/quadroCliente" component={Quadro} />
