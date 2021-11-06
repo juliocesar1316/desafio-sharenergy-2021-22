@@ -34,7 +34,9 @@ Esse endpoint irá listar todas os clientes cadastrados, e o retorno inicial ser
 ```
 
 #### 2. `GET` `Usinas` https://api-sharenergy.herokuapp.com/usina
+
 Esse endpoint irá listar todas os dados da usina que em questao é a primeira cadastrada, e o retorno inicial será:
+
 ```json=
 [
   {
@@ -109,3 +111,5 @@ linguagem: node.js
 [API Sharenergy (api heroku)](https://api-sharenergy.herokuapp.com)
 
 [Repositório Front-End](https://github.com/juliocesar1316/desafio-sharenergy-2021-22/tree/julio-cesar-de-oliveira-martins)
+
+[Youtube](https://youtu.be/ZMn8PPm-luI)
