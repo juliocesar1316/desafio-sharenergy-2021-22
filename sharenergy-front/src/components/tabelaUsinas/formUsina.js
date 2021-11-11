@@ -3,29 +3,35 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import useStyles from "./style";
 
-export default function EditUsina({ dados, modalEdit }) {
+export default function EditUsina({ dados, modalEdit, listaUsina, setModalEdit}) {
   const classes = useStyles();
   const [nomeUsina, setNomeUsina] = useState("");
   const [endereco, setEndereco] = useState("");
   const [segmento, setSegmento] = useState("");
 
-  async function handleUpdate() {
-    if (!nomeUsina || !endereco || !segmento) {
-      return;
-    }
+  async function handleUpdate(event) {
+    event.preventDefault()
     const data = {
       nomeusina: nomeUsina,
       endereco: endereco,
       segmento: segmento,
     };
 
-    await fetch(`http://localhost:3333/usina/${dados.id}`, {
+    try {
+      await fetch(`https://api-sharenergy.herokuapp.com/usina/${dados.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
+    listaUsina()
+    setModalEdit(false)
+    return;
+    } catch (error) {
+      console.log(error.message);
+    }
+    
   }
 
   useEffect(() => {

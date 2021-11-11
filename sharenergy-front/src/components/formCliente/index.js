@@ -10,10 +10,8 @@ export default function Form() {
   const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
 
-  async function handleAddCliente() {
-    if (!nomeCliente || !telefone || !cpf || !email) {
-      return;
-    }
+  async function handleAddCliente(event) {
+    event.preventDefault()
     const dados = {
       nomecliente: nomeCliente,
       telefone: telefone,
@@ -22,13 +20,17 @@ export default function Form() {
     };
 
     try {
-      await fetch("http://localhost:3333/cliente", {
+      await fetch("https://api-sharenergy.herokuapp.com/cliente", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dados),
       });
+      setNomeCliente('')
+      setTelefone('')
+      setCpf('')
+      setEmail('')
       return;
     } catch (error) {
       return console.log(error.message);
@@ -44,6 +46,7 @@ export default function Form() {
           label="Nome"
           variant="outlined"
           fullWidth
+          value={nomeCliente}
           onChange={(e) => setNomeCliente(e.target.value)}
         />
         <TextField
@@ -54,6 +57,7 @@ export default function Form() {
           label="Telefone"
           variant="outlined"
           fullWidth
+          value={telefone}
           onChange={(e) => setTelefone(e.target.value)}
         />
       </div>
@@ -66,6 +70,7 @@ export default function Form() {
           label="CPF"
           variant="outlined"
           fullWidth
+          value={cpf}
           onChange={(e) => setCpf(e.target.value)}
         />
         <TextField
@@ -76,6 +81,7 @@ export default function Form() {
           label="Email"
           variant="outlined"
           fullWidth
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>

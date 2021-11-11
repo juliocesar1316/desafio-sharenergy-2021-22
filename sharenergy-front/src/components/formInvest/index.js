@@ -9,10 +9,8 @@ export default function FormInvest() {
   const [usinaId, setUsinaId] = useState("");
   const [percentualDeParticipacao, setPercentualDeParticipacao] = useState("");
 
-  async function handleAddCliente() {
-    if (!numeroCliente || !usinaId || !percentualDeParticipacao) {
-      return;
-    }
+  async function handleAddCliente(event) {
+    event.preventDefault()
     const dados = {
       numerocliente: numeroCliente,
       usinaid: usinaId,
@@ -20,13 +18,16 @@ export default function FormInvest() {
     };
 
     try {
-      await fetch("http://localhost:3333/investimento", {
+      await fetch("https://api-sharenergy.herokuapp.com/investimento", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dados),
       });
+      setNumeroCliente('')
+      setUsinaId('')
+      setPercentualDeParticipacao('')
       return;
     } catch (error) {
       return console.log(error.message);
@@ -43,6 +44,7 @@ export default function FormInvest() {
           type="number"
           variant="outlined"
           fullWidth
+          value={numeroCliente}
           onChange={(e) => setNumeroCliente(e.target.value)}
         />
         <TextField
@@ -53,6 +55,7 @@ export default function FormInvest() {
           label="ID Usina"
           variant="outlined"
           fullWidth
+          value={usinaId}
           onChange={(e) => setUsinaId(e.target.value)}
         />
       </div>
@@ -65,6 +68,7 @@ export default function FormInvest() {
           label="Percentual Receita"
           variant="outlined"
           fullWidth
+          value={percentualDeParticipacao}
           onChange={(e) => setPercentualDeParticipacao(e.target.value)}
         />
       </div>

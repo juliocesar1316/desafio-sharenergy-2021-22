@@ -3,32 +3,35 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import useStyles from "./style";
 
-export default function EditInvest({ dados, modalEdit }) {
+export default function EditInvest({ dados, modalEdit, listaInvestimentos, setModalEdit }) {
   const classes = useStyles();
   const [numeroCliente, setNumeroCliente] = useState("");
   const [usinaId, setUsinaId] = useState("");
   const [percentualDeParticipacao, setPercentualDeParticipacao] = useState("");
 
-  async function handleUpdate() {
-    if (!numeroCliente || !usinaId || !percentualDeParticipacao) {
-      return;
-    }
+  async function handleUpdate(event) {
+    event.preventDefault()
     const data = {
-      numerocliente: numeroCliente,
-      usinaid: usinaId,
       percentualdeparticipacao: percentualDeParticipacao,
     };
-
-    await fetch(
-      `http://localhost:3333/investimento/${dados.id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    try {
+      await fetch(
+        `https://api-sharenergy.herokuapp.com/investimento/${dados.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      listaInvestimentos()
+      setModalEdit(false)
+      return;
+    } catch (error) {
+      return console.log(error.message);
+    }
+    
   }
 
   useEffect(() => {
@@ -41,54 +44,56 @@ export default function EditInvest({ dados, modalEdit }) {
   }, [modalEdit, dados]);
 
   return (
-    <form className={classes.root} onSubmit={handleUpdate}>
-      <div>
-        <TextField
-          className={classes.text}
-          id="outlined-read-only-input"
-          label="Nome Usina"
-          variant="outlined"
-          InputProps={{
-            readOnly: true,
-          }}
+    <>
+      <form className={classes.root} onSubmit={handleUpdate}>
+        <div>
+          <TextField
+            className={classes.text}
+            id="outlined-read-only-input"
+            label="Nome Usina"
+            variant="outlined"
+            InputProps={{
+              readOnly: true,
+            }}
+            fullWidth
+            value={numeroCliente}
+          />
+          <TextField
+            className={classes.text}
+            id="outlined-read-only-input"
+            type="text"
+            label="Endereco"
+            variant="outlined"
+            InputProps={{
+              readOnly: true,
+            }}
+            fullWidth
+            value={usinaId}
+          />
+        </div>
+        <div>
+          <TextField
+            className={classes.text}
+            required
+            id="outlined-required"
+            type="number"
+            label="Segmento"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setPercentualDeParticipacao(e.target.value)}
+            value={percentualDeParticipacao}
+          />
+        </div>
+        <Button
+          type="submit"
           fullWidth
-          value={numeroCliente}
-        />
-        <TextField
-          className={classes.text}
-          id="outlined-read-only-input"
-          type="text"
-          label="Endereco"
-          variant="outlined"
-          InputProps={{
-            readOnly: true,
-          }}
-          fullWidth
-          value={usinaId}
-        />
-      </div>
-      <div>
-        <TextField
-          className={classes.text}
-          required
-          id="outlined-required"
-          type="number"
-          label="Segmento"
-          variant="outlined"
-          fullWidth
-          onChange={(e) => setPercentualDeParticipacao(e.target.value)}
-          value={percentualDeParticipacao}
-        />
-      </div>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="primary"
-        size="large"
-      >
-        EDITAR
-      </Button>
-    </form>
+          variant="contained"
+          color="primary"
+          size="large"
+        >
+          EDITAR
+        </Button>
+      </form>
+    </>
   );
 }

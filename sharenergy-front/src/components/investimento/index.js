@@ -78,7 +78,7 @@ function Investimento() {
 
   async function dadosUsina() {
     const response = await fetch(
-      "http://localhost:3333/graficoUsina",
+      "https://api-sharenergy.herokuapp.com/graficoUsina",
       {
         method: "GET",
       }
@@ -92,7 +92,7 @@ function Investimento() {
   async function listaInvestimentos() {
     try {
       const response = await fetch(
-        "http://localhost:3333/investimento",
+        "https://api-sharenergy.herokuapp.com/investimento",
         {
           method: "GET",
         }
@@ -105,7 +105,7 @@ function Investimento() {
   }
 
   async function handleDelete(id) {
-    await fetch(`http://localhost:3333/investimento/${id}`, {
+    await fetch(`https://api-sharenergy.herokuapp.com/investimento/${id}`, {
       method: "DELETE",
     });
     listaInvestimentos();
@@ -205,7 +205,7 @@ function Investimento() {
             <IconButton className={classes.close} onClick={handleClose}>
               <CloseIcon fontSize="large" color="#fff" />
             </IconButton>
-            <EditInvest dados={dados} modalEdit={modalEdit} />
+            <EditInvest dados={dados} modalEdit={modalEdit} listaInvestimentos={listaInvestimentos} setModalEdit={setModalEdit} />
           </div>
         )}
       </div>

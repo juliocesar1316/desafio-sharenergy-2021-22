@@ -72,7 +72,7 @@ export default function TabelaUsina() {
   async function listaUsina() {
     try {
       const response = await fetch(
-        "http://localhost:3333/usina",
+        "https://api-sharenergy.herokuapp.com/usina",
         {
           method: "GET",
         }
@@ -85,7 +85,7 @@ export default function TabelaUsina() {
   }
 
   async function handleDelete(id) {
-    await fetch(`http://localhost:3333/usina/${id}`, {
+    await fetch(`https://api-sharenergy.herokuapp.com/usina/${id}`, {
       method: "DELETE",
     });
     listaUsina();
@@ -141,7 +141,7 @@ export default function TabelaUsina() {
           <IconButton className={classes.close} onClick={handleClose}>
             <CloseIcon fontSize="large" color="#fff" />
           </IconButton>
-          <EditUsina dados={dados} modalEdit={modalEdit} />
+          <EditUsina dados={dados} modalEdit={modalEdit} setModalEdit={setModalEdit} listaUsina={listaUsina}  />
         </div>
       )}
     </>

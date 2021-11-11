@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -53,7 +54,7 @@ export default function LoginApp() {
     const userValue = event.target[0].value;
     const senhaValue = event.target[2].value;
     const result = await logar(userValue, senhaValue);
-    result ? history.push(`/`) : history.push(`/login`);
+    result ? history.push(`/dashboard`) : history.push(`/`);
   };
 
   return (
