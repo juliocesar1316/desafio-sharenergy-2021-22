@@ -1,6 +1,5 @@
 import {
   AreaChart,
-  linearGradient,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -19,7 +18,7 @@ function Grafico() {
   useEffect(() => {
     async function dadosUsina() {
       const response = await fetch(
-        "https://api-sharenergy.herokuapp.com/graficoUsina",
+        "http://localhost:3333/graficoUsina",
         {
           method: "GET",
         }

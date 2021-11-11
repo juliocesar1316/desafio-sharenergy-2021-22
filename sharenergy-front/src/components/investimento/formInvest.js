@@ -20,7 +20,7 @@ export default function EditInvest({ dados, modalEdit }) {
     };
 
     await fetch(
-      `https://api-sharenergy.herokuapp.com/investimento/${dados.id}`,
+      `http://localhost:3333/investimento/${dados.id}`,
       {
         method: "PUT",
         headers: {
@@ -41,56 +41,54 @@ export default function EditInvest({ dados, modalEdit }) {
   }, [modalEdit, dados]);
 
   return (
-    <>
-      <form className={classes.root} onSubmit={handleUpdate}>
-        <div>
-          <TextField
-            className={classes.text}
-            id="outlined-read-only-input"
-            label="Nome Usina"
-            variant="outlined"
-            InputProps={{
-              readOnly: true,
-            }}
-            fullWidth
-            value={numeroCliente}
-          />
-          <TextField
-            className={classes.text}
-            id="outlined-read-only-input"
-            type="text"
-            label="Endereco"
-            variant="outlined"
-            InputProps={{
-              readOnly: true,
-            }}
-            fullWidth
-            value={usinaId}
-          />
-        </div>
-        <div>
-          <TextField
-            className={classes.text}
-            required
-            id="outlined-required"
-            type="number"
-            label="Segmento"
-            variant="outlined"
-            fullWidth
-            onChange={(e) => setPercentualDeParticipacao(e.target.value)}
-            value={percentualDeParticipacao}
-          />
-        </div>
-        <Button
-          type="submit"
+    <form className={classes.root} onSubmit={handleUpdate}>
+      <div>
+        <TextField
+          className={classes.text}
+          id="outlined-read-only-input"
+          label="Nome Usina"
+          variant="outlined"
+          InputProps={{
+            readOnly: true,
+          }}
           fullWidth
-          variant="contained"
-          color="primary"
-          size="large"
-        >
-          EDITAR
-        </Button>
-      </form>
-    </>
+          value={numeroCliente}
+        />
+        <TextField
+          className={classes.text}
+          id="outlined-read-only-input"
+          type="text"
+          label="Endereco"
+          variant="outlined"
+          InputProps={{
+            readOnly: true,
+          }}
+          fullWidth
+          value={usinaId}
+        />
+      </div>
+      <div>
+        <TextField
+          className={classes.text}
+          required
+          id="outlined-required"
+          type="number"
+          label="Segmento"
+          variant="outlined"
+          fullWidth
+          onChange={(e) => setPercentualDeParticipacao(e.target.value)}
+          value={percentualDeParticipacao}
+        />
+      </div>
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="primary"
+        size="large"
+      >
+        EDITAR
+      </Button>
+    </form>
   );
 }

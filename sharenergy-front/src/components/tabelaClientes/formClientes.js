@@ -20,7 +20,7 @@ export default function EditClientes({ dados, modalEdit }) {
       cpf: cpf,
       email: email,
     };
-    await fetch(`https://api-sharenergy.herokuapp.com/cliente/${dados.id}`, {
+    await fetch(`http://localhost:3333/cliente/${dados.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

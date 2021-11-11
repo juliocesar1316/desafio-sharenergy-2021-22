@@ -72,7 +72,7 @@ export default function TabelaUsina() {
   async function listaUsina() {
     try {
       const response = await fetch(
-        "https://api-sharenergy.herokuapp.com/usina",
+        "http://localhost:3333/usina",
         {
           method: "GET",
         }
@@ -85,7 +85,7 @@ export default function TabelaUsina() {
   }
 
   async function handleDelete(id) {
-    await fetch(`https://api-sharenergy.herokuapp.com/usina/${id}`, {
+    await fetch(`http://localhost:3333/usina/${id}`, {
       method: "DELETE",
     });
     listaUsina();

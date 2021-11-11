@@ -19,7 +19,7 @@ export default function EditUsina({ dados, modalEdit }) {
       segmento: segmento,
     };
 
-    await fetch(`https://api-sharenergy.herokuapp.com/usina/${dados.id}`, {
+    await fetch(`http://localhost:3333/usina/${dados.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

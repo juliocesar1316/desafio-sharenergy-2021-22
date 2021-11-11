@@ -73,7 +73,7 @@ export default function TabelaCliente() {
   async function listaCliente() {
     try {
       const response = await fetch(
-        "https://api-sharenergy.herokuapp.com/cliente",
+        "http://localhost:3333/cliente",
         {
           method: "GET",
         }
@@ -86,7 +86,7 @@ export default function TabelaCliente() {
   }
 
   async function handleDelete(id) {
-    await fetch(`https://api-sharenergy.herokuapp.com/cliente/${id}`, {
+    await fetch(`http://localhost:3333/cliente/${id}`, {
       method: "DELETE",
     });
     listaCliente();

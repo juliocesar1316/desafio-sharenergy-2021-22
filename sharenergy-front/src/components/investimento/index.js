@@ -78,7 +78,7 @@ function Investimento() {
 
   async function dadosUsina() {
     const response = await fetch(
-      "https://api-sharenergy.herokuapp.com/graficoUsina",
+      "http://localhost:3333/graficoUsina",
       {
         method: "GET",
       }
@@ -92,7 +92,7 @@ function Investimento() {
   async function listaInvestimentos() {
     try {
       const response = await fetch(
-        "https://api-sharenergy.herokuapp.com/investimento",
+        "http://localhost:3333/investimento",
         {
           method: "GET",
         }
@@ -105,7 +105,7 @@ function Investimento() {
   }
 
   async function handleDelete(id) {
-    await fetch(`https://api-sharenergy.herokuapp.com/investimento/${id}`, {
+    await fetch(`http://localhost:3333/investimento/${id}`, {
       method: "DELETE",
     });
     listaInvestimentos();

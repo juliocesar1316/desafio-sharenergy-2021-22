@@ -22,7 +22,7 @@ export default function Form() {
     };
 
     try {
-      await fetch("https://api-sharenergy.herokuapp.com/cliente", {
+      await fetch("http://localhost:3333/cliente", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
