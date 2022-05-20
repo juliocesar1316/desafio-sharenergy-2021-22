@@ -71,7 +71,7 @@ function Grafico() {
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="2">
               <stop offset="5%" stopColor="#5664D2" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#5664D2" stopOpacity={0} />
+              <stop offset="60%" stopColor="#5664D2" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="name" />
